@@ -102,23 +102,25 @@
     },
   ];
 
-  var globalState = {
-    currentStep: 0,
-    trail: []
-  };
   var appContent = document.getElementById('app-content');
   var moveToNextNode = function(evt) {
     var nextNodeId = evt.target.nextNodeId;
     var trailText = evt.target.trailText;
-    update(nextNodeId, trailText, true);
+    updateState(nextNodeId, trailText);
   }
-  var update = function(nodeId, trailText, updateGlobalState) {
-    if (updateGlobalState) {
-      globalState.currentNodeId = nodeId;
-      if (trailText.length > 0) {
-        globalState.trail.push(trailText);
-      }
-      history.pushState(globalState, null, '?nodeId=' + nodeId);
+  var updateState = function(nodeId, text) {
+    var state = history.state;
+    state.trail.push({
+      nodeId: nodeId,
+      text: text
+    });
+    history.pushState(state, null, '?nodeId=' + nodeId);
+    updateContent(state);
+  }
+  var updateContent = function(state) {
+    var nodeId = 0;
+    if (state.trail.length > 0) {
+      nodeId = state.trail[state.trail.length - 1].nodeId;
     }
 
     // Clear previous content:
@@ -159,7 +161,7 @@
       appContent.appendChild(p);
 
       var ul = document.createElement('ul');
-      globalState.trail.forEach(function(breadcrumb) {
+      state.trail.forEach(function(breadcrumb) {
         var li = document.createElement('li');
         li.textContent = breadcrumb;
         ul.append(li);
@@ -172,7 +174,7 @@
 
       function download() {
         var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(globalState.trail));
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(state.trail));
         element.setAttribute('download', 'path.txt');
 
         element.style.display = 'none';
@@ -190,33 +192,26 @@
       appContent.appendChild(input);
 
     }
-    console.log(history);
+    console.log(history.state.trail);
   }
 
   // Initialise the app:
+
   window.onload = function() {
     var urlParams = new URLSearchParams(window.location.search);
-
-    // Check if this is a reload, in which case you are already on a slide.
-    if (urlParams.has('nodeId')) {
-      var nodeId = Number(urlParams.get('nodeId'));
-      if (!isNaN(nodeId)) {
-        update(nodeId, '', true);
-      }
-    } else {
-      update(0, '', true);
+    console.log(urlParams);
+    var state = history.state;
+    if (!state) {
+      state = {trail: []};
+      history.pushState(state, '', '?nodeId=0');
     }
-  }
+    updateContent(state);
+  };
 
   // Fires when the user goes back or forward in the history.
   window.onpopstate = function(evt) {
-    console.log('I am popping state', evt);
     if (evt.state != null) {
-      console.log(evt.state.path);
-      var previousStep = evt.state.path.pop();
-      console.log(evt.state.path);
-      update(previousStep, false);
-      globalState = evt.state;
+      updateContent(evt.state);
     }
   }
 
