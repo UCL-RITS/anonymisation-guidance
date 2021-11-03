@@ -163,9 +163,9 @@
       var ul = document.createElement('ul');
       state.trail.forEach(function(breadcrumb) {
         var li = document.createElement('li');
-        li.textContent = breadcrumb;
+        li.textContent = breadcrumb.text;
         ul.append(li);
-      })
+      });
       appContent.appendChild(ul);
 
       var h4 = document.createElement('h4');
@@ -173,16 +173,84 @@
       appContent.appendChild(h4);
 
       function download() {
+        var pars = [
+          new docx.Paragraph({
+                children: [
+                    new docx.TextRun({
+                        text: "Declaration of data analysis",
+                        bold: true,
+                        font: "Calibri",
+                        size: 30,
+                    }),
+                ],
+                spacing: {
+                    after: 200,
+                },
+            }),
+        ];
+        state.trail.forEach(function(breadcrumb) {
+            pars.push(new docx.Paragraph({
+                children: [
+                    new docx.TextRun({
+                        text: breadcrumb.text,
+                        font: "Calibri",
+                    })
+                ],
+                break: 1,
+                bullet: {
+                    level: 0
+                    }
+                }),
+            );
+        });
+        pars.push(
+            new docx.Paragraph({
+                children: [
+                    new docx.TextRun({
+                        text: "Signed\t\t\t\t\t\tDate",
+                        bold: true,
+                        font: "Calibri",
+                    }),
+                ],
+                spacing: {
+                    before: 400,
+                    after: 200,
+                },
+            }),
+        );
+        pars.push(
+            new docx.Paragraph({
+                children: [
+                    new docx.TextRun({
+                        text: ".........\t\t\t\t\t\t........",
+                        font: "Calibri",
+                    }),
+                ],
+                spacing: {
+                    before: 800
+                },
+            }),
+        );
+
+        var doc = new docx.Document({
+            sections: [{
+                properties: {},
+                children: pars,
+            }],
+        });
+
         var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(state.trail));
-        element.setAttribute('download', 'path.txt');
+        docx.Packer.toBlob(doc).then(function(blob) {
+          element.setAttribute('href', window.URL.createObjectURL(blob));
+          element.setAttribute('download', 'path.docx');
 
-        element.style.display = 'none';
-        document.body.appendChild(element);
+          element.style.display = 'none';
+          document.body.appendChild(element);
 
-        element.click();
+          element.click();
 
-        document.body.removeChild(element);
+          document.body.removeChild(element);
+        })
       }
 
       var input = document.createElement('input');
@@ -199,7 +267,6 @@
 
   window.onload = function() {
     var urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams);
     var state = history.state;
     if (!state) {
       state = {trail: []};
