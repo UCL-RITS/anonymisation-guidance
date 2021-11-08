@@ -137,6 +137,9 @@
         var input = document.createElement('input');
         input.type = 'button';
         input.value = answer;
+        input.classList.add('cta');
+        input.classList.add('btn');
+        input.classList.add('cta-half');
         var trailText = node.edges[answer][0];
         var nextNodeInstruction = node.edges[answer][1];
         if (nextNodeInstruction === 'next') {
@@ -256,6 +259,9 @@
       var input = document.createElement('input');
       input.type = 'button';
       input.value = 'Download this info';
+      input.classList.add('cta');
+      input.classList.add('btn');
+      input.classList.add('cta-half');
       input.addEventListener('click', download);
       appContent.appendChild(input);
 
