@@ -129,9 +129,9 @@
       // Get new content:
       var node = nodes[nodeId];
 
-      var p = document.createElement('p');
-      p.textContent = node.text;
-      appContent.appendChild(p);
+      var h4 = document.createElement('h4');
+      h4.textContent = node.text;
+      appContent.appendChild(h4);
 
       ['Yes', 'No'].forEach(function(answer) {
         var input = document.createElement('input');
