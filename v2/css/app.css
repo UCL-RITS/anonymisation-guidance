@@ -1,0 +1,10 @@
+h3, #app-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 2em 35px;
+}
+
+input {
+  margin: 5px;
+}
