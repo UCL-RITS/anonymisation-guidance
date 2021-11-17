@@ -1,107 +1,6 @@
 (function() {
   'use strict';
 
-  var nodes = [
-    {
-      'text': 'Will the research generate (including by selecting, sorting or combining) any personal data?',
-      'edges': {
-        'Yes': ['The research will generate personal data', 'move 4'],
-        'No':  ['The research will not generate personal data', 'next']
-      }
-    },
-    {
-      'text': 'Will any project input be personal data?',
-      'edges': {
-        'Yes': ['Project inputs include personal data', 'next'],
-        'No':  ['No project input will be personal data', 'move 5']
-      }
-    },
-    {
-      'text': 'Is that personal data legally accessible by the general public with no restrictions on use?',
-      'edges': {
-        'Yes': ['The personal data is legally accessible by the general public with no restrictions on use', 'move 4'],
-        'No':  ['The personal data is not legally accessible by the general public without restrictions on its use', 'next']
-      }
-    },
-    {
-      'text': 'Is that personal data pseudonymised?',
-      'edges': {
-        'Yes': ['The personal data is pseudonymised', 'move 2'],
-        'No':  ['The personal data is not pseudonymised', 'next']
-      }
-    },
-    {
-      'text': 'Would disclosure pose a substantial threat to the personal safety, health or security of the data subjects?',
-      'edges': {
-        'Yes': ['Disclosure would pose a substantial threat to the personal safety, health or security of the data subjects', 'TIER_4'],
-        'No':  ['Disclosure would not pose a substantial threat to the personal safety, health or security of the data subjects', 'TIER_3']
-      }
-    },
-    {
-      'text': 'Do you have absolute confidence that it is not possible to identify individuals from the data, either at the point of entry or as a result of any analysis that may be carried out?',
-      'edges': {
-        'Yes': ['I have absolute confidence that it is not possible to identify individuals from the data, either at the point of entry or as a result of any analysis that may be carried out', 'next'],
-        'No':  ['I do not have absolute confidence that it is not possible to identify individuals from the data, either at the point of entry or as a result of any analysis that may be carried out', 'move 5']
-      }
-    },
-    {
-      'text': 'Will you be working with commercial-in-confidence information or private third party intellectual property, or legally or politically sensitive data?',
-      'edges': {
-        'Yes': ['I will be working with commercial-in-confidence information or private third party intellectual property, or legally or politically sensitive data', 'move 2'],
-        'No':  ['I will not be working with commercial-in-confidence information or private third party intellectual property, or legally or politically sensitive data', 'next']
-      }
-    },
-    {
-      'text': 'Will releasing any of the datasets or results impact on the competitive advantage of the research team?',
-      'edges': {
-        'Yes': ['Releasing any of the datasets or results would impact on the competitive advantage of the research team', 'TIER_1'],
-        'No':  ['Releasing any of the datasets or results would not impact on the competitive advantage of the research team', 'TIER_0']
-      }
-    },
-    {
-      'text': 'Do you have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be low?',
-      'edges': {
-        'Yes': ['I have have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be low', 'next'],
-        'No':  ['I do not have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be low', 'move 5']
-      }
-    },
-    {
-      'text': 'Do you have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be so low as to be trivial?',
-      'edges': {
-        'Yes': ['I have have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be so low as to be trivial', 'TIER_1'],
-        'No':  ['I do not have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be so low as to be trivial', 'TIER_2']
-      }
-    },
-    {
-      'text': 'Do you have strong confidence that it is not possible to identify individuals from the data, either at the point of entry or as a result of any analysis that may be carried out?',
-      'edges': {
-        'Yes': ['I have strong confidence that it is not possible to identify individuals from the data, either at the point of entry or as a result of any analysis that may be carried out', 'next'],
-        'No':  ['I do not have strong confidence that it is not possible to identify individuals from the data, either at the point of entry or as a result of any analysis that may be carried out', 'move 3']
-      }
-    },
-    {
-      'text': 'Will you also be working with commercial-in-confidence information or private third party intellectual property, or legally or politically sensitive data?',
-      'edges': {
-        'Yes': ['I will also be working with commercial-in-confidence information or private third party intellectual property, or legally or politically sensitive data', 'next'],
-        'No':  ['I will not also be working with commercial-in-confidence information or private third party intellectual property, or legally or politically sensitive data', 'TIER_2']
-      }
-    },
-    {
-      'text': 'Do you have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be low?',
-      'edges': {
-        'Yes': ['I have have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be low', 'TIER_2'],
-        'No':  ['I do not have high confidence that the commercial, legal, reputational or political consequences of unauthorised disclosure of this data would be low', 'next']
-      }
-    },
-    {
-      'text': 'Do likely attackers include sophisticated, well resourced and determined threats, such as highly capable serious organised crime groups and state actors?',
-      'edges': {
-        'Yes': ['Likely attackers include sophisticated, well resourced and determined threats, such as highly capable serious organised crime groups and state actors', 'TIER_4'],
-        'No':  ['Likely attackers do not include sophisticated, well resourced and determined threats, such as highly capable serious organised crime groups and state actors', 'TIER_3']
-      }
-    },
-  ];
-
   var appContent = document.getElementById('app-content');
   var moveToNextNode = function(evt) {
     var nextNodeId = evt.target.nextNodeId;
@@ -172,7 +71,7 @@
       appContent.appendChild(ul);
 
       var h4 = document.createElement('h4');
-      h4.textContent = 'Based on these responses, we believe your work package to be in: ' + nodeId;
+      h4.textContent = 'Based on these responses, we believe your data is ' + tier_lookup[nodeId];
       appContent.appendChild(h4);
 
       function download() {
