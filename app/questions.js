@@ -3,7 +3,7 @@
 
   exports.nodes = [
     {
-      'text': 'Are you obtaining personal data directly? (See below for guidance on meaning of "personal data")',
+      'text': 'Are you obtaining personal data directly?',
       'edges': {
         'Yes': ['I am obtaining personal data directly', 'next'],
         'No':  ['I am not obtaining personal data directly', 'move 3']
