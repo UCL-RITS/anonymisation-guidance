@@ -3,10 +3,10 @@
 
   exports.nodes = [
     {
-      'text': 'Are you obtaining personal data directly?',
+      'text': 'Will your project make direct contact with research participants?',
       'edges': {
-        'Yes': ['I am obtaining personal data directly', 'next'],
-        'No':  ['I am not obtaining personal data directly', 'move 3']
+        'Yes': ['My project will be making direct contact with participants', 'next'],
+        'No':  ['My project will not be making direct contact with participants', 'move 3']
       }
     },
     {
@@ -17,33 +17,55 @@
       }
     },
     {
-      'text': 'Will you ask for data that might be sensitive such as ethnicity?',
+      'text': 'Will your project ask people for information that might be special category?',
       'edges': {
-        'Yes': ['I will ask for data that might be sensitive such as ethnicity', 'TIER_1_AND_A_HALF'],
-        'No':  ['I will not ask for data that might be sensitive such as ethnicity', 'TIER_1']
+        'Yes': ['I will ask for information that might be special category', 'TIER_1_AND_A_HALF'],
+        'No':  ['I will not ask for information that might be special category', 'TIER_1']
       }
     },
     {
-      'text': 'Do any third parties hold personal data which will be used by your project?',
+      'text': 'Are there any licenses or agreements concerning confidentiality for the data that your project intends to use?',
       'edges': {
         'Yes': ['My project will be using personal data held by third parties', 'next'],
         'No':  ['My project will not be using personal data held by third parties', 'TIER_0']
       }
     },
     {
-      'text': 'Will you be accessing this personal data? (If not presumably it will be pseudonymised before your project uses it?)',
+      'text': 'Does the license or agreement require ISO 27001 or DSP Toolkit?',
       'edges': {
-        'Yes': ['I will be accessing this personal data', 'next'],
-        'No':  ['I will not be accessing this personal data', 'TIER_0']
+        'Yes': ['The agreement requires ISO 27001 or DSP Toolkit', 'TIER_2'],
+        'No':  ['The agreement does not require ISO 27001 or DSP Toolkit', 'next']
       }
     },
     {
-      'text': 'Are there conditions attached to the data that would mean using fixed configurations of network or desktops or is it special category?',
+      'text': 'Will the licenses or agreements cover information relating to people',
       'edges': {
-        'Yes': ['There are conditions attached to the data that would mean using fixed configurations of network or desktops or it is special category', 'TIER_2'],
-        'No':  ['There are no conditions attached to the data that would mean using fixed configurations of network or desktops and it is not special category', 'TIER_1']
+        'Yes': ['The agreement relates to people', 'next'],
+        'No':  ['The agreement does not relate to people', 'move 3']
       }
     },
+    {
+      'text': 'Are the people the data relates to defined by a set of characteristics that might be special category?',
+      'edges': {
+        'Yes': ['The agreement relates to people', 'TIER_2'],
+        'No':  ['The agreement does not relate to people', 'next']
+      }
+    },
+    {
+      'text': 'Will the license or agreement cover data that might be special category?',
+      'edges': {
+        'Yes': ['I will ask for information that might be special category', 'TIER_2'],
+        'No':  ['I will not ask for information that might be special category', 'next']
+      }
+    },
+    {
+      'text': 'Are there conditions attached to the data that would mean using fixed configurations of network or desktops?',
+      'edges': {
+        'Yes': ['There are conditions attached to the data that would mean using fixed configurations of network or desktops', 'TIER_2'],
+        'No':  ['There are no conditions attached to the data that would mean using fixed configurations of network or desktops', 'TIER_1']
+      }
+    },
+    
   ];
 
 })(this);
