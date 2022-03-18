@@ -56,6 +56,12 @@
         input.addEventListener('click', moveToNextNode);
         appContent.appendChild(input);
       });
+
+      if ('guidance' in node) {
+        var guidanceP = document.createElement('p');
+        guidanceP.textContent = node.guidance;
+        appContent.appendChild(guidanceP);
+      }
     }
     else {
       var p = document.createElement('p');
