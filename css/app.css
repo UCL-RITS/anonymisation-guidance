@@ -5,6 +5,10 @@ h3, #app-content {
   padding: 2em 35px;
 }
 
+p {
+  padding: 2em 0px;
+}
+
 input {
   margin: 5px;
 }
