@@ -1,8 +1,16 @@
-h3, #app-content {
+h3, #app-container {
   max-width: 1400px;
   margin: 0 auto;
   background-color: white;
   padding: 2em 35px;
+}
+
+#feedback {
+  padding-top: 0px;
+}
+
+h5 {
+  padding-top: 2em;
 }
 
 p {

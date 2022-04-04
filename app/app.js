@@ -77,7 +77,7 @@
       appContent.appendChild(ul);
 
       var h4 = document.createElement('h4');
-      h4.textContent = 'Based on these responses, we believe your data is ' + tier_lookup[nodeId];
+      h4.innerHTML = 'Based on these responses, we believe your data is ' + tier_lookup[nodeId].replace(/\[(.+?)\]\((https?:\/\/.+?)\)/g, '<a href="$2">$1</a>');
       appContent.appendChild(h4);
 
       function download() {
