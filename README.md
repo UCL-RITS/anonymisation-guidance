@@ -3,12 +3,12 @@
 flowchart TD
 
 	A{Direct participant contact?};
-	A -- Yes --> C{Special category data?};
+	A -- Yes --> C{Special category criteria?};
 	A -- No --> B{Identifiable data?};
 	B{Identifiable data?};
-	B -- Yes --> C{Special category data?};
+	B -- Yes --> C{Special category criteria?};
 	B -- No --> I{Confidentiality agreements?};
-	C{Special category data?};
+	C{Special category criteria?};
 	C -- Yes --> TIER_2[TIER 2];
 	C -- No --> D{Implied criminality?};
 	D{Implied criminality?};
@@ -16,8 +16,8 @@ flowchart TD
 	D -- No --> E{Children or vulnerable people?};
 	E{Children or vulnerable people?};
 	E -- Yes --> TIER_2[TIER 2];
-	E -- No --> F{Special category data?};
-	F{Special category data?};
+	E -- No --> F{Special category questions?};
+	F{Special category questions?};
 	F -- Yes --> TIER_2[TIER 2];
 	F -- No --> G{Confidentiality agreements?};
 	G{Confidentiality agreements?};
