@@ -1,6 +1,7 @@
 (function() {
   'use strict';
 
+  var title = document.getElementById('title');
   var appContent = document.getElementById('app-content');
   var moveToNextNode = function(evt) {
     var nextNodeId = evt.target.nextNodeId;
@@ -25,6 +26,7 @@
     // Clear previous content:
     appContent.innerHTML = '';
     if (typeof(nodeId) === 'number') {
+      title.textContent = 'Analyse the information risk in your data by working through these questions';
       // Get new content:
       var node = nodes[nodeId];
 
@@ -64,7 +66,9 @@
       }
     }
     else {
+      title.textContent = 'Results';
       var p = document.createElement('p');
+      p.classList.add('strong');
       p.textContent = 'I confirm:';
       appContent.appendChild(p);
 
@@ -150,7 +154,9 @@
         var element = document.createElement('a');
         docx.Packer.toBlob(doc).then(function(blob) {
           element.setAttribute('href', window.URL.createObjectURL(blob));
-          element.setAttribute('download', 'path.docx');
+          
+          var timestamp = new Date().toISOString();
+          element.setAttribute('download', 'data-classification-' + timestamp + '.docx');
 
           element.style.display = 'none';
           document.body.appendChild(element);

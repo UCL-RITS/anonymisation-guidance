@@ -1,8 +1,12 @@
-h3, #app-container {
+#app-container, h3 {
   max-width: 1400px;
   margin: 0 auto;
   background-color: white;
   padding: 2em 35px;
+}
+
+h3 {
+  padding-bottom: 0px;
 }
 
 #feedback {
@@ -14,9 +18,13 @@ h5 {
 }
 
 p {
-  padding: 2em 0px;
+  padding: 1.5em 0px;
 }
 
 input {
   margin: 5px;
+}
+
+.strong {
+  font-weight: bold;
 }
