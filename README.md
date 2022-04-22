@@ -7,7 +7,7 @@ flowchart TD
 	A -- No --> B{Identifiable data?};
 	B{Identifiable data?};
 	B -- Yes --> C{Special category data?};
-	B -- No --> G{Confidentiality agreements?};
+	B -- No --> I{Confidentiality agreements?};
 	C{Special category data?};
 	C -- Yes --> TIER_2[TIER 2];
 	C -- No --> D{Implied criminality?};
