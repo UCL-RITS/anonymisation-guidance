@@ -22,7 +22,7 @@
       },
       {
         'text': 'Does your research have inclusion criteria of anything that might be special category?',
-        'flowchart': 'Special category criteria?',
+        'flowchart': 'Special category population?',
         'edges': {
           'Yes': ['My research concerns a particular group of people defined by a set of characteristics that might be special category', 'TIER_2'],
           'No':  ['My research does not concern a particular group of people defined by a set of characteristics that might be special category', 'next']
