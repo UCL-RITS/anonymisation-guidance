@@ -154,7 +154,9 @@
         var element = document.createElement('a');
         docx.Packer.toBlob(doc).then(function(blob) {
           element.setAttribute('href', window.URL.createObjectURL(blob));
-          element.setAttribute('download', 'path.docx');
+          
+          var timestamp = new Date().toISOString();
+          element.setAttribute('download', 'data-classification-' + timestamp + '.docx');
 
           element.style.display = 'none';
           document.body.appendChild(element);
