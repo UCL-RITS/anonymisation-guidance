@@ -16,7 +16,7 @@
         'flowchart': 'Identifiable data?',
         'edges': {
           'Yes': ['My project will handle identifiable information', 'next'],
-          'No':  ['My project will not handle identifiable information', 'move 5']
+          'No':  ['My project will not handle identifiable information', 'move 7']
         },
         'guidance': "You don't need to have direct contact with research participants in all cases to handle information about them. If you or anyone else could use information to identify someone then that information would be personal data under data protection legislation."
       },
@@ -56,7 +56,6 @@
         },
         'guidance': 'So, any of the following characteristics: racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetics, biometrics, health, sex life, or sexual orientation. Collecting information about any of these characteristics would render those data Special Category under the UK Data Protection legislation'
       },
-      
       {
         'breadcrumb': 'identifiable',
         'text': 'Are there any licenses or agreements concerning confidentiality for the data that your project intends to use?',
