@@ -4,6 +4,7 @@
     exports.nodes = [
       {
         'text': 'Will your project make direct contact with research participants?',
+        'flowchart': 'Direct participant contact?',
         'edges': {
           'Yes': ['My project will be making direct contact with participants', 'move 2'],
           'No':  ['My project will not be making direct contact with participants', 'next']
@@ -12,6 +13,7 @@
       },
       {
         'text': 'Are you going to access information relating to people that you could identify if you were suitably determined to?',
+        'flowchart': 'Identifiable data?',
         'edges': {
           'Yes': ['My project will handle identifiable information', 'next'],
           'No':  ['My project will not handle identifiable information', 'move 5']
@@ -20,6 +22,7 @@
       },
       {
         'text': 'Does your research have inclusion criteria of anything that might be special category?',
+        'flowchart': 'Special category data?',
         'edges': {
           'Yes': ['My research concerns a particular group of people defined by a set of characteristics that might be special category', 'TIER_2'],
           'No':  ['My research does not concern a particular group of people defined by a set of characteristics that might be special category', 'next']
@@ -28,6 +31,7 @@
       },
       {
         'text': 'Does your project concern or include any information that might imply criminality by the people you are studying or people known to them?',
+        'flowchart': 'Implied criminality?',
         'edges': {
           'Yes': ['My project concerns / includes information about potential criminality by the people we are studying or people known to them', 'TIER_2'],
           'No':  ['My project does not concern / include information about potential criminality by the people we are studying or people known to them', 'next']
@@ -36,6 +40,7 @@
       },
       {
         'text': 'Does your project include information about children or vulnerable people?',
+        'flowchart': 'Children or vulnerable people?',
         'edges': {
           'Yes': ['My project includes information about children or vulnerable people', 'TIER_2'],
           'No':  ['My project does not include information about children or vulnerable people', 'next']
@@ -44,6 +49,7 @@
       },
       {
         'text': 'Will your project ask people for information that might be special category?',
+        'flowchart': 'Special category data?',
         'edges': {
           'Yes': ['I will ask for information that might be special category', 'TIER_2'],
           'No':  ['I will not ask for information that might be special category', 'next']
@@ -54,6 +60,7 @@
       {
         'breadcrumb': 'identifiable',
         'text': 'Are there any licenses or agreements concerning confidentiality for the data that your project intends to use?',
+        'flowchart': 'Confidentiality agreements?',
         'edges': {
           'Yes': ['My project will use confidential information held by third parties', 'next'],
           'No':  ['My project will not use confidential information held by third parties', 'TIER_1']
@@ -63,6 +70,7 @@
       {
         'breadcrumb': 'identifiable',
         'text': 'Are there conditions attached to the data that would commit you to using fixed configurations of network or desktops?',
+        'flowchart': 'Hardware configuration conditions?',
         'edges': {
           'Yes': ['There are conditions attached to the data that would mean using fixed configurations of network or desktops', 'TIER_2'],
           'No':  ['There are no conditions attached to the data that would mean using fixed configurations of network or desktops', 'TIER_1']
@@ -72,6 +80,7 @@
       {
         'breadcrumb': 'non-identifiable',
         'text': 'Are there any licenses or agreements concerning confidentiality for the data that your project intends to use?',
+        'flowchart': 'Confidentiality agreements?',
         'edges': {
           'Yes': ['My project will use confidential information held by third parties', 'next'],
           'No':  ['My project will not use confidential information held by third parties', 'TIER_0']
@@ -81,6 +90,7 @@
       {
         'breadcrumb': 'non-identifiable',
         'text': 'Are there conditions attached to the data that would commit you to using a particular environment?',
+        'flowchart': 'Environment conditions?',
         'edges': {
           'Yes': ['There are conditions attached to the data that would mean using fixed configurations of network or desktops', 'TIER_2'],
           'No':  ['There are no conditions attached to the data that would mean using fixed configurations of network or desktops', 'TIER_1']
